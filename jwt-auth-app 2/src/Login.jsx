@@ -24,7 +24,7 @@ const Login = ({getData}) => {
        
       switch (userRole) {
         case 'admin':
-          navigate('/AdminDashboard');
+          navigate('/StudentForm');
           break;
         case 'student':
           navigate('/StudentDashboard');

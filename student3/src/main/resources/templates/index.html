@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form id="studentForm">
+    <!-- Your form inputs for student data -->
+    <input type="text" id="studentName" placeholder="Student Name">
+    <input type="text" id="studentMobileNumber" placeholder="Mobile Number">
+    <button type="submit">Add Student</button>
+</form>
+
+<script>
+
+  $(document).ready(function() {
+    $('#studentForm').submit(function(event) {
+      event.preventDefault();
+
+      // Get the form inputs
+      var studentName = $('#studentName').val();
+      var studentMobileNumber = $('#studentMobileNumber').val();
+
+      // Create the student object
+      var studentData = {
+        studentName: studentName,
+        studentMobileNumber: studentMobileNumber
+      };
+
+      // Send the AJAX request
+      $.ajax({
+        url: '/addStudent',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(studentData),
+        success: function(response) {
+          console.log('Student added successfully');
+          // Reset the form
+          $('#studentForm')[0].reset();
+        },
+        error: function(error) {
+          console.error('Error adding student:', error);
+        }
+      });
+    });
+  });
+</script>
+
+
+</body>
+</html>
