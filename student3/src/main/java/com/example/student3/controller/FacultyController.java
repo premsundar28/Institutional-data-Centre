@@ -186,5 +186,50 @@ public class FacultyController {
         }
     }
 
+    @DeleteMapping("/deleteEducation/{userId}")
+    @PreAuthorize("hasAuthority('admin','faculty')")
+    public ResponseEntity<String> deleteEducation(@PathVariable String userId) {
+        if (recentEducationRepository.existsById(userId)) {
+            recentEducationRepository.deleteById(userId);
+            return ResponseEntity.ok("Education deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteSocial/{userId}")
+    @PreAuthorize("hasAuthority('admin','faculty')")
+    public ResponseEntity<String> deleteSocial(@PathVariable String userId) {
+        if (socialRepository.existsById(userId)) {
+            socialRepository.deleteById(userId);
+            return ResponseEntity.ok("Social information deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteExperience/{userId}")
+    @PreAuthorize("hasAuthority('admin','faculty')")
+    public ResponseEntity<String> deleteExperience(@PathVariable String userId) {
+        if (experienceRepository.existsById(userId)) {
+            experienceRepository.deleteById(userId);
+            return ResponseEntity.ok("Experience information deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteFaculty/{userId}")
+    @PreAuthorize("hasAuthority('admin','faculty')")
+    public ResponseEntity<String> deleteFaculty(@PathVariable String userId) {
+        if (facultyRepository.existsById(userId)) {
+            facultyRepository.deleteById(userId);
+            return ResponseEntity.ok("Faculty deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 }

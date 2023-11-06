@@ -273,4 +273,63 @@ public class StudentController {
 
 
     }
+
+    @DeleteMapping("/deleteStudent/{studentId}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<String> deleteStudent(@PathVariable String studentId) {
+        if (studentRepository.existsById(studentId)) {
+            studentRepository.deleteById(studentId);
+            return ResponseEntity.ok("Student deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteSkill/{studentId}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<String> deleteSkill(@PathVariable String studentId) {
+        if (skillRepository.existsById(studentId)) {
+            skillRepository.deleteById(studentId);
+            return ResponseEntity.ok("Skill deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteProject/{studentId}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<String> deleteProject(@PathVariable String studentId) {
+        if (projectRepository.existsById(studentId)) {
+            projectRepository.deleteById(studentId);
+            return ResponseEntity.ok("Project deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @DeleteMapping("/deleteInternship/{studentId}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<String> deleteInternship(@PathVariable String studentId) {
+        if (internshipRepository.existsById(studentId)) {
+            internshipRepository.deleteById(studentId);
+            return ResponseEntity.ok("Internship deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @DeleteMapping("/deleteCertification/{studentId}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<String> deleteCertification(@PathVariable String studentId) {
+        if (certificateRepository.existsById(studentId)) {
+            certificateRepository.deleteById(studentId);
+            return ResponseEntity.ok("Certification deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
