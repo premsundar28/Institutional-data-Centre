@@ -6,6 +6,7 @@ import com.example.student3.service.JwtService;
 import com.example.student3.Entity.UserInfo;
 import com.example.student3.service.StudentQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -152,5 +153,124 @@ public class StudentController {
         return studentIds;
     }
 
+    @PutMapping("/updateStudent/{studentId}")
+    @PreAuthorize("hasAuthority('admin','student')")
+    public ResponseEntity<String> updateStudent(@PathVariable String studentId, @RequestBody Student updatedStudent) {
+        Student existingStudent = studentRepository.findById(studentId).orElse(null);
 
+        if (existingStudent != null) {
+            // Update the student information
+            existingStudent.setName(updatedStudent.getName());
+            existingStudent.setBatch(updatedStudent.getBatch());
+            existingStudent.setEmailId(updatedStudent.getEmailId());
+            existingStudent.setMobile(updatedStudent.getMobile());
+            existingStudent.setCGPA(updatedStudent.getCGPA());
+
+            studentRepository.save(existingStudent);
+            return ResponseEntity.ok("Student information updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/updateSkill/{studentId}")
+    @PreAuthorize("hasAuthority('admin','student')")
+    public ResponseEntity<String> updateSkill(@PathVariable String studentId, @RequestBody Skill updatedSkill) {
+        Skill existingSkill = skillRepository.findById(studentId).orElse(null);
+
+        if (existingSkill != null) {
+            existingSkill.setSkill(updatedSkill.getSkill());
+            existingSkill.setDomain(updatedSkill.getDomain());
+
+            skillRepository.save(existingSkill);
+            return ResponseEntity.ok("Skill information updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+        @PutMapping("/updateProject/{studentId}")
+        public ResponseEntity<Project> updateProject(
+                @PathVariable String studentId,
+                @RequestBody Project updatedProject) {
+
+            // Check if the project with the provided studentId exists in the database
+            Optional<Project> existingProjectOptional = projectRepository.findById(studentId);
+
+            if (existingProjectOptional.isPresent()) {
+                Project existingProject = existingProjectOptional.get();
+                existingProject.setDescription(updatedProject.getDescription());
+                existingProject.setTags(updatedProject.getTags());
+                existingProject.setUrl(updatedProject.getUrl());
+                existingProject.setVerificationURL(updatedProject.getVerificationURL());
+
+                // Save the updated project back to the database
+                projectRepository.save(existingProject);
+
+                return ResponseEntity.ok(existingProject);
+            } else {
+                // If the project doesn't exist, return a 404 Not Found response
+                return ResponseEntity.notFound().build();
+            }
+
+
+        }
+
+    @PutMapping("/updateInternship/{studentId}")
+    public ResponseEntity<Internship> updateInternship(
+            @PathVariable String studentId,
+            @RequestBody Internship updatedInternship) {
+
+        Optional<Internship> existingInternshipOptional = internshipRepository.findById(studentId);
+
+        if (existingInternshipOptional.isPresent()) {
+            Internship existingInternship = existingInternshipOptional.get();
+            existingInternship.setName(updatedInternship.getName());
+            existingInternship.setCompany(updatedInternship.getCompany());
+            existingInternship.setStartDate(updatedInternship.getStartDate());
+            existingInternship.setEndDate(updatedInternship.getEndDate());
+            existingInternship.setVerification(updatedInternship.getVerification());
+            existingInternship.setDomain(updatedInternship.getDomain());
+
+
+            internshipRepository.save(existingInternship);
+
+            return ResponseEntity.ok(existingInternship);
+        } else {
+
+            return ResponseEntity.notFound().build();
+        }
+
+
+
+    }
+
+    @PutMapping("/updateCertification/{studentId}")
+    public ResponseEntity<Certification> updateCertification(
+            @PathVariable String studentId,
+            @RequestBody Certification updatedCertification) {
+
+        // Check if the certification with the provided studentId exists in the database
+        Optional<Certification> existingCertificationOptional = certificateRepository.findById(studentId);
+
+        if (existingCertificationOptional.isPresent()) {
+            Certification existingCertification = existingCertificationOptional.get();
+            existingCertification.setName(updatedCertification.getName());
+            existingCertification.setExpire(updatedCertification.getExpire());
+            existingCertification.setVerification(updatedCertification.getVerification());
+            existingCertification.setCertify(updatedCertification.getCertify());
+
+            // Save the updated certification back to the database
+            certificateRepository.save(existingCertification);
+
+            return ResponseEntity.ok(existingCertification);
+        } else {
+            // If the certification doesn't exist, return a 404 Not Found response
+            return ResponseEntity.notFound().build();
+        }
+
+
+    }
 }

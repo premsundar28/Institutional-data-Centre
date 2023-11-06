@@ -13,10 +13,6 @@ import java.util.Date;
 public class Certification {
 
     @Id
-    @Column(name = "uniqueId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uniqueId;
-
     @Column(name = "studentId")
     private String studentId;
 

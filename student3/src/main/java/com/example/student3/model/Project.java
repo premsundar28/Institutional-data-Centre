@@ -11,10 +11,6 @@ import lombok.*;
 public class Project {
 
     @Id
-    @Column(name = "uniqueId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uniqueId;
-
     @Column(name = "studentId")
     private String studentId;
 

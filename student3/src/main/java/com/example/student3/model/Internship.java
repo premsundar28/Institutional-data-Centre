@@ -12,11 +12,6 @@ import java.util.Date;
 
 public class Internship {
 
-    @Id
-    @Column(name = "uniqueId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uniqueId;
-
     @Column(name = "name")
     private String name;
 
@@ -31,6 +26,7 @@ public class Internship {
     @Temporal(TemporalType.DATE)
     private Date endDate;
 
+    @Id
     @Column(name = "studentid")
     private String studentId;
 

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CertificateRepository extends JpaRepository<Certification,Long> {
+public interface CertificateRepository extends JpaRepository<Certification,String> {
     List<Certification> findByName(String name);
 }
