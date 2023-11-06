@@ -29,25 +29,25 @@ public class FacultyController {
     RecentEducationRepository recentEducationRepository;
 
     @PostMapping("/addFaculty")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','faculty')")
     public void addStudent(@RequestBody Faculty faculty) {
         facultyRepository.save(faculty);
     }
 
     @PostMapping("/addExperience")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','faculty')")
     public void addStudent(@RequestBody Experience experience) {
         experienceRepository.save(experience);
     }
 
     @PostMapping("/addSocial")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','faculty')")
     public void addStudent(@RequestBody Social social) {
         socialRepository.save(social);
     }
 
     @PostMapping("/addEducation")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','faculty')")
     public void addStudent(@RequestBody RecentEducation recentEducation) {
         recentEducationRepository.save(recentEducation);
     }

@@ -46,31 +46,31 @@ public class StudentController {
 
 
     @PostMapping("addStudent")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','student')")
     public void addStudent(@RequestBody Student student) {
         studentRepository.save(student);
     }
 
     @PostMapping("addSkill")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','student')")
     public void addSkill(@RequestBody Skill skill){
         skillRepository.save(skill);
     }
 
     @PostMapping("addProject")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','student')")
     public void addProject(@RequestBody Project project){
         projectRepository.save(project);
     }
 
     @PostMapping("addInternship")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','student')")
     public void addInternship(@RequestBody Internship internship){
         internshipRepository.save(internship);
     }
 
     @PostMapping("addCertificate")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin','student')")
     public void addCertification(@RequestBody Certification certification){
         certificateRepository.save(certification);
     }
@@ -89,11 +89,13 @@ public class StudentController {
     }
 
     @GetMapping("/studentsByCGPA")
+    @PreAuthorize("hasAuthority('admin')")
     public List<Student> getStudentsByCGPA(@RequestParam("cgpa") String cgpa) {
         return studentRepository.findByCGPAGreaterThanEqual(cgpa);
     }
 
     @GetMapping("/studentIdsBySkill")
+    @PreAuthorize("hasAuthority('admin')")
     public List<String> getStudentIdsBySkill(@RequestParam("skill") String skill) {
         List<Skill> skillsWithMatchingName = skillRepository.findBySkill(skill);
         List<String> studentIds = new ArrayList<>();
@@ -124,6 +126,7 @@ public class StudentController {
     }
 
     @GetMapping("/studentIdsByName")
+    @PreAuthorize("hasAuthority('admin')")
     public List<String> getStudentIdsByName(@RequestParam("name") String name) {
         List<Certification> certificatesWithMatchingName = certificateRepository.findByName(name);
         List<String> studentIds = new ArrayList<>();
@@ -137,6 +140,7 @@ public class StudentController {
 
 
     @GetMapping("/studentIdsByInternshipDomain")
+    @PreAuthorize("hasAuthority('admin')")
     public List<String> getStudentIdsByInternshipDomain(@RequestParam("domain") String domain) {
         List<Internship> internshipsWithMatchingDomain = internshipRepository.findByDomain(domain);
         List<String> studentIds = new ArrayList<>();

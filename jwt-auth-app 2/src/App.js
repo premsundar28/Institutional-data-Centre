@@ -3,7 +3,7 @@ import Login from './Login';
 import Logout from './Logout';
 import Cookies from 'js-cookie';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import StudentForm from './StudentForm';
+
 import AdminDashboard from './AdminDashboard';
 import StudentDashboard from './StudentDashboard';
 import FaultyDashboard from './FaultyDashboard.jsx';
@@ -24,7 +24,7 @@ const App = () => {
     <div>
       {tokenid !== undefined ? (
         <Routes>
-          <Route path="/StudentForm" element={<StudentForm />} />
+        
           <Route path="/" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
