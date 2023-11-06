@@ -13,7 +13,6 @@ public class Faculty {
     @Id
     @Column(name = "userId")
     private String userId;
-
     @Column(name = "name")
     private String name;
     @Column(name ="gender")

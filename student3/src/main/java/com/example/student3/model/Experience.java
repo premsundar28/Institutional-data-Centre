@@ -14,9 +14,6 @@ import java.util.Date;
 public class Experience {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "userId")
     private String userId;
 

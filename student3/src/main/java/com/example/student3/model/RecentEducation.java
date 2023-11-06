@@ -12,9 +12,6 @@ import lombok.NoArgsConstructor;
 public class RecentEducation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "userId")
     private String userId;
 
